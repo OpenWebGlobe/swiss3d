@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<title>geo.admin.ch Demo 3D Viewer</title>
+
+<link rel="stylesheet" type="text/css" href="styles/styles.css">
+<script type="text/javascript"
+        src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
+<script type="text/javascript" src="externals/openwebglobe-0.9.0.js"></script>
+<script type="text/javascript" src="externals/wgs84_ch1903.js"></script>
+<script type="text/javascript" src="externals/swisstopoapi.js"></script>
+<script type="text/javascript" src="externals/loadpois.js"></script>
+<!--<script type="text/javascript" src="../../../external/closure-library/closure/goog/base.js"></script>
+<script type="text/javascript" src="../../../compiled/deps.js"></script>
+<script type="text/javascript">goog.require('owg.OpenWebGlobe');</script>-->
+
+
+<script type="text/javascript">
+
+
+//Definition oo global variables
+var globe;
+var boundlayer = 0;
+var scene;
+var world;
+var searchpoilayer;
+var searchpoi;
+
+var searchbox;
+var canv;
+
+/**
+ * @description set up the virtual globe
+ */
+function main()
+{
+   var browserName = navigator.appName;
+
+   //disable contextmenu over canvas
+   canv = document.getElementById("canvas");
+   canv.oncontextmenu = function (event)
+   {
+      event.preventDefault();
+      event.stopPropagation();
+      return false;
+   };
+   canv.onclick = function (event)
+   {
+      searchbox.blur();
+      canv.focus();
+   };
+   searchbox = document.getElementById("txtInput");
+
+
+   //check for internet explorer users
+   if (browserName == "Microsoft Internet Explorer")
+   {
+      CFInstall.check({
+         mode:"overlay",
+         destination:"http://swiss3d.openwebglobe.org/"
+      });
+      var info = document.getElementById("divNavigationManual");
+      info.style.visibility = 'visible';
+      info.style.background = "";
+      info.style.color = "#ffffff";
+      info.style.fontFamily = 'Arial';
+      info.style.fontSize = '14px';
+      info.style.width = '600px';
+      info.style.left = '10px';
+      info.style.top = '10px';
+      info.innerHTML = "This site doesn't work with Internet Explorer. To enable OpenWebGlobe SDK in Internet Explorer you can try to use Google Chrome Frame <a href=\"http://code.google.com/intl/de-DE/chrome/chromeframe/\">here.</a>";
+   }
+   else
+   {
+      document.getElementById("divMenuLeft").style.visibility = 'visible';
+      //document.getElementById("divNavigationManual").style.visibility = 'visible';
+      resizeCanvas();
+      g_context = ogCreateContextFromCanvas("canvas", true);
+
+      globe = ogCreateGlobe(g_context);
+
+      //load swissimage data
+      var imgSWISSTOPO =
+      {
+         url:["/data/image"],
+         layer:"ch.swisstopo.swissimage-20111129",
+         service:"owg"
+      };
+      ogAddImageLayer(globe, imgSWISSTOPO);
+
+      //load Elevation data dhm25
+      var elvDHM =
+      {
+         url:["/data/elevation"], //change adress here.
+         layer:"DHM25-20111026",
+         service:"owg"
+      }
+      ogAddElevationLayer(globe, elvDHM);
+
+      ogSetBackgroundColor(g_context, 0.2, 0.2, 0.7, 1);
+
+      scene = ogGetScene(g_context);
+      world = ogGetWorld(scene);
+
+      //create the poilayer and load the pois from loadpois.js
+      layer = ogCreatePOILayer(world, "poilayer");
+      loadpois(layer);
+
+      ogSetCanvasSizeOffset(scene, 250, 125);
+
+      document.body.onclick = function ()
+      {
+         document.getElementById("divNavigationManual").style.visibility = 'hidden';
+         document.body.onclick = null;
+      }
+
+      // Load Demo Buildings
+      geometrylayer = ogCreateGeometryLayer(world, "buildings");
+      ogLoadGeometryAsync(geometrylayer, "models/bulle.json");
+      ogLoadGeometryAsync(geometrylayer, "models/epagny.json");
+      ogLoadGeometryAsync(geometrylayer, "models/fhnw.json");
+      ogLoadGeometryAsync(geometrylayer, "models/nuerensdorf.json");
+      ogLoadGeometryAsync(geometrylayer, "models/epfl/obj1.json");
+      ogLoadGeometryAsync(geometrylayer, "models/epfl/obj2.json");
+      ogLoadGeometryAsync(geometrylayer, "models/epfl/obj3.json");
+      ogLoadGeometryAsync(geometrylayer, "models/epfl/obj4.json");
+      ogLoadGeometryAsync(geometrylayer, "models/epfl/obj5.json");
+      ogLoadGeometryAsync(geometrylayer, "models/epfl/obj6.json");
+      ogLoadGeometryAsync(geometrylayer, "models/epfl/obj7.json");
+      ogLoadGeometryAsync(geometrylayer, "models/epfl/obj8.json");
+      ogLoadGeometryAsync(geometrylayer, "models/epfl/obj9.json");
+      ogLoadGeometryAsync(geometrylayer, "models/epfl/obj10.json");
+      ogLoadGeometryAsync(geometrylayer, "models/epfl/obj11.json");
+      ogLoadGeometryAsync(geometrylayer, "models/epfl/obj12.json");
+      ogLoadGeometryAsync(geometrylayer, "models/epfl/obj13.json");
+      ogLoadGeometryAsync(geometrylayer, "models/epfl/obj14.json");
+      ogLoadGeometryAsync(geometrylayer, "models/epfl/obj15.json");
+      ogLoadGeometryAsync(geometrylayer, "models/epfl/obj17.json");
+      ogLoadGeometryAsync(geometrylayer, "models/epfl/obj18.json");
+      ogLoadGeometryAsync(geometrylayer, "models/epfl/obj19.json");
+      ogLoadGeometryAsync(geometrylayer, "models/epfl/obj20.json");
+      ogLoadGeometryAsync(geometrylayer, "models/epfl/obj21.json");
+      ogLoadGeometryAsync(geometrylayer, "models/epfl/obj24.json");
+      ogLoadGeometryAsync(geometrylayer, "models/epfl/obj25.json");
+      ogLoadGeometryAsync(geometrylayer, "models/epfl/obj27.json");
+      ogLoadGeometryAsync(geometrylayer, "models/epfl/obj28.json");
+      ogLoadGeometryAsync(geometrylayer, "models/epfl/obj30.json");
+      ogLoadGeometryAsync(geometrylayer, "models/epfl/obj31.json");
+      ogLoadGeometryAsync(geometrylayer, "models/epfl/obj32.json");
+      ogLoadGeometryAsync(geometrylayer, "models/epfl/obj34.json");
+      ogLoadGeometryAsync(geometrylayer, "models/epfl/obj36.json");
+      ogLoadGeometryAsync(geometrylayer, "models/epfl/obj37.json");
+      ogLoadGeometryAsync(geometrylayer, "models/epfl/obj38.json");
+      ogLoadGeometryAsync(geometrylayer, "models/epfl/obj39.json");
+      ogLoadGeometryAsync(geometrylayer, "models/epfl/obj40.json");
+      ogLoadGeometryAsync(geometrylayer, "models/epfl/obj41.json");
+      ogLoadGeometryAsync(geometrylayer, "models/epfl/obj44.json");
+      ogLoadGeometryAsync(geometrylayer, "models/epfl/obj45.json");
+      ogLoadGeometryAsync(geometrylayer, "models/epfl/obj47.json");
+      ogLoadGeometryAsync(geometrylayer, "models/epfl/obj48.json");
+      ogLoadGeometryAsync(geometrylayer, "models/epfl/obj50.json");
+      ogLoadGeometryAsync(geometrylayer, "models/epfl/obj52.json");
+      ogLoadGeometryAsync(geometrylayer, "models/epfl/obj54.json");
+      ogLoadGeometryAsync(geometrylayer, "models/epfl/obj55.json");
+      ogLoadGeometryAsync(geometrylayer, "models/epfl/obj56.json");
+      ogLoadGeometryAsync(geometrylayer, "models/epfl/obj58.json");
+      ogLoadGeometryAsync(geometrylayer, "models/epfl/obj59.json");
+      ogLoadGeometryAsync(geometrylayer, "models/epfl/obj61.json");
+      ogLoadGeometryAsync(geometrylayer, "models/epfl/obj63.json");
+      ogLoadGeometryAsync(geometrylayer, "models/epfl/obj66.json");
+      ogLoadGeometryAsync(geometrylayer, "models/epfl/obj67.json");
+      ogLoadGeometryAsync(geometrylayer, "models/epfl/obj68.json");
+
+      searchpoilayer = ogCreatePOILayer(world, "searchedpois");
+      poidef = { icon:"images/point.png",
+         position:[0, 0, 0],
+         size:0.2,
+         flagpole:false
+      };
+      //set a poi
+      searchpoi = ogCreatePOI(searchpoilayer, poidef);
+      checkUrlParameters();
+
+      //set flyto speed
+      ogSetFlightDuration(scene, 6000);
+
+
+   }
+
+
+}
+
+function searchBoxKeyPressed(evt)
+{
+   if (evt.keyCode == 13)
+   {
+      search();
+      evt.preventDefault();
+      evt.stopPropagation();
+   }
+   evt.stopPropagation();
+}
+
+
+/**
+ * @description adapt canvas size.
+ */
+function resizeCanvas(engine, w, h)
+{
+   if (scene > 0)
+   {
+      ogSetSize(scene, window.innerWidth - 400, window.innerHeight - 425);
+   }
+}
+
+
+/**
+ * @description search button callback.
+ */
+function search()
+{
+   var searchtext = document.getElementById("txtInput").value;
+   if (searchtext == "config:quality")
+   {
+      var quality = parseFloat(window.prompt("Set Render-Quality (min: 1.0; max: 3.0)"));
+      if (quality > 1 && quality <= 3)
+      {
+         ogSetRenderQuality(world, quality);
+      }
+   }
+   else
+   {
+      swisstopoapi.sendQuery(searchtext);
+   }
+   searchbox.blur();
+   canv.focus();
+}
+
+
+/**
+ * @description flyto links callback.
+ */
+function flyto(n)
+{
+   var pos = ogGetOrientation(scene);
+   switch (n)
+   {
+      //Epagny
+      case 1:     //ogFlyTo(scene,7.085848,46.580348,1020,335,-10,0);
+         ogFlyToLookAtPosition(scene, 7.083207, 46.588348, 400, 1400, pos.yaw, -30, 0);
+         break;
+
+      //Bulle
+      case 2:
+         ogFlyToLookAtPosition(scene, 7.058635, 46.616078, 400, 1400, pos.yaw, -40, 0);
+         break;
+
+      //Nürensdorf
+      case 3:
+         ogFlyToLookAtPosition(scene, 8.649798224, 47.45031594, 519, 500, pos.yaw, -45, 0);
+         break;
+
+
+      //FHNW
+      case 4:
+         ogFlyToLookAtPosition(scene, 7.63818214, 47.53376607, 285, 500, pos.yaw, -45, 0);
+         break;
+
+      //EPFL
+      case 5:
+         ogFlyToLookAtPosition(scene, 6.5625981894, 46.5177948548, 396.00, 500, pos.yaw, -30, 0);
+         break;
+
+      default:
+         break;
+
+   }
+}
+
+
+/**
+ * @description toggle the boundary layer
+ */
+function toggleboundaries(sender)
+{
+   var boundariesLayer =
+   {
+      url     : ["/data/image"], //??
+      layer   : "ch.swisstopo.gg25-land-flaeche.fill",
+      service : "i3d"
+   }
+
+   if (sender.checked == true)
+   {
+      boundlayer = ogAddImageLayer(globe, boundariesLayer);
+      ogFlyTo(scene, 8.226692, 46.80121, 320000, 0, -90, 0);
+   }
+   else
+   {
+      ogRemoveImageLayer(boundlayer);
+   }
+}
+
+
+function checkUrlParameters()
+{
+   var pos = {};
+   pos.lng = null;
+   pos.lat = null;
+   pos.elv = null;
+   pos.yaw = null;
+   pos.pitch = null;
+   pos.roll = null;
+
+   if (location.search != "")
+   {
+      var x = location.search.substr(1).split("&")
+      for (var i = 0; i < x.length; i++)
+      {
+         var y = x[i].split("=");
+         pos[y[0]] = y[1];
+      }
+      if (pos.lng != null && pos.lat != null && pos.elv != null)
+      {
+         ogFlyTo(scene, pos.lng, pos.lat, pos.elv, pos.yaw, pos.pitch, pos.roll);
+      }
+   }
+}
+</script>
+
+</head>
+<body onload="main()" style="background-color:#999999; overflow:hidden;">
+
+<div id="divTopRow">
+   <div id="divTopRowImageRight"></div>
+   <div id="divTopRowImageLeft"></div>
+   <div id="divTitle">OpenWebGlobe DemoViewer Switzerland 3D</div>
+</div>
+
+<div id="divMenuLeft">
+   <div class="classSeparatorTitle">Localisation Search</div>
+   <div id="divMenuSearch">
+
+      <input id="txtInput" type="text" size="20"
+             onkeydown="searchBoxKeyPressed(event)">
+      <input id="btgo" type="button" value="Go" onclick="search()">
+
+   </div>
+   <div class="classSeparatorTitle">Boundaries</div>
+   <div id="divMenuBoundaries">
+      <input type="checkbox" onclick="toggleboundaries(this)"> Boundaries
+   </div>
+   <div class="classSeparatorTitle">3D Models</div>
+   <div id="divMenu3DModels">
+      <ul class="classMenu">
+         <li onclick="flyto(1)">Simple 3D Objects (Gruyere / Epagny)</li>
+         <li onclick="flyto(2)">Simple 3D Objects (Bulle)</li>
+         <li onclick="flyto(3)">Medium Quality 3D Objects (Nürensdorf)</li>
+         <li onclick="flyto(4)">Textured Buildings (FHNW)</li>
+         <li onclick="flyto(5)">Textured Buildings (EPFL)</li>
+      </ul>
+   </div>
+   <div class="classSeparatorTitle">Infos</div>
+   <div id="divMenuInfos">
+      <ul class="classMenu">
+         <li><a href="https://dav0.bgdi.admin.ch/swisstopo/3d/information.pdf"
+                target="_blank">Information</a></li>
+         <li><a href="https://dav0.bgdi.admin.ch/swisstopo/3d/copyright.pdf"
+                target="_blank">Copyright</a></li>
+         <li><a href="mailto:swiss3d@openwebglobe.org" target="_blank">Contact / Feedback</a></li>
+         <li><a href="http://www.openwebglobe.org/feedback" target="_blank">Feedback Form</a></li>
+      </ul>
+   </div>
+   <div class="classSeparatorTitle">Participants</div>
+   <div id="divMenuParticipants">
+      <ul class="classMenu">
+         <li><a href="http://www.fhnw.ch/habg/ivgi" target="_blank">FHNW University of Applied Sciences and Arts Northwestern Switzerland</a></li>
+         <li><a href="http://www.camp2camp.com" target="_blank">Camptocamp</a></li>
+         <li><a href="http://www.swisstopo.admin.ch" target="_blank">Federal Office of Topography</a></li>
+         <li><a href="http://geo.admin.ch" target="_blank">geo.admin.ch</a></li></li>
+      </ul>
+   </div>
+
+</div>
+<div id="divCopyright">
+   Data &#169 swisstopo<br/>NASA's Earth Observatory
+</div>
+<div id="divCanvas">
+   <div id="divSearchResults">
+      <div id="divSearchResultTitle">Search Results</div>
+   </div>
+   <div id="divNavigationManual"></div>
+   <canvas id="canvas">
+   </canvas>
+</div>
+</body>
+
