@@ -21,6 +21,12 @@
 *     Licensed under MIT License. Read the file LICENSE for more information   *
 *******************************************************************************/  
 
+/* Browser reset */
+*{	margin:0;
+	padding:0;
+	}
+
+
 /* #divTopRow ----------------------------------------------------------------*/
 #divTopRow
 {
@@ -116,20 +122,22 @@
 
 /* #divMenuLeft ----------------------------------------------------------------*/
 #divMenuLeft {
-    background-color: #ffffff;
-    height: 100%;
+	background-color: #FFFFFF;
+    bottom: 34px;
     left: 0;
+    margin: 125px 0 0;
+    overflow: auto;
     position: absolute;
-    top: 125px;
+    top: 0;
+    visibility: hidden;
     width: 250px;
-    visibility:hidden;
 }
 #divMenuSearch {
     background-color: #ffffff;
     height: 23px;
     left: 0;
-    top: 0;
-    margin:  21px;
+    top: 125px;
+    margin:18px 0px 25px 23px;
 }
 #divMenuBoundaries {
     background-color: #ffffff;
@@ -141,29 +149,38 @@
     font-size : 12px;
 }
 
-#divMenu3DModels {
-    background-color: #ffffff;
-    height: 123px;
+#divMenuInfos {
+    background-color: #FFFFFF;
+    height: 95px;
     left: 0;
     top: 0;
-     margin-top: 3px;
+}
+#divMenuParticipants {
+    background-color: #FFFFFF;
+    height: 130px;
+    left: 0;
+    top: 0;
 }
 
-#divMenuInfos {
+#divMenuParticipants {
     background-color: #ffffff;
-    height: 86px;
+    height: 130px;
     left: 0;
     top: 0;
 }
 
 
 #divCopyright {
-   bottom: 2px;
-   font-family: sans-serif;
-   font-size: 12px;
-   left: 2px;
-   margin-left: 15px;
-   position: absolute;
+    background-color: #FFFFFF;
+    bottom: -1px;
+    font-family: sans-serif;
+    font-size: 12px;
+    height: 36px;
+    left: 0px;
+    padding-left: 20px;
+    position: absolute;
+    width: 250px;
+    border-top: solid;
 }
 
 #divCanvas
@@ -198,7 +215,7 @@
     font-size: 12px;
     list-style: none ;
     padding: 3px 19px 2px;
-    margin-left: -40px;
+    margin-left: -6px;
 }
 .classMenu  a:hover,li:hover {
     background-color: red;
