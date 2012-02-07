@@ -89,13 +89,13 @@
    width: 84px;
 }
 #divTopRowImageFHNW {
-   background-image: url("../images/fhnw.png");
+   background-image: url("../images/fhnw249x35.png");
    background-repeat: no-repeat;
-   height: 49px;
+   width: 249px;
+   height: 35px;
    position: absolute;
    right: 120px;
-   top: 31px;
-   width: 348px;
+   top: 40px;
 }
 
 #divTopRowImageLeft
@@ -103,8 +103,8 @@
    background-image : url(../images/logo.png);
    background-repeat : no-repeat;
    position : absolute;
-   height : 125px;
-   width : 615px;
+   height : 106px;
+   width : 238px;
    top : 0px;
    left : 0px;
 }
