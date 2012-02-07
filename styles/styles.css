@@ -75,14 +75,15 @@
 }
 
 #divTitle {
-   font-family: sans-serif;
-   font-size: 20px;
-   font-weight: bold;
-   height: 30px;
-   left: 344px;
-   position: absolute;
-   top: 44px;
-   width: 627px;
+    font-family: sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    height: 30px;
+    left: 30%;
+    position: absolute;
+    right: 0;
+    top: 44px;
+    width: 428px;
 }
 
 #divTopRowImageCamptocamp {

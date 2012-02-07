@@ -1,0 +1,211 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+#divTopRow {
+    background-color: #FFFFFF;
+    height: 104px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+	min-width:780px;
+}
+#divTitle {
+    font-family: sans-serif;
+    font-size: 25px;
+    font-weight: bold;
+    height: 30px;
+    left: 45%;
+    position: absolute;
+    top: 44px;
+    width: 627px;
+}
+#divTopRowImageRight {
+    height: 125px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 615px;
+}
+#divTitle {
+    font-family: sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    height: 30px;
+    left: 31%;
+    position: absolute;
+    right: 0;
+    top: 50px;
+    width: 428px;
+}
+#divTopRowImageCamptocamp {
+    background-image: url("../images/logo-camptocamp.png");
+    background-repeat: no-repeat;
+    height: 60px;
+    position: absolute;
+    right: 15px;
+    top: 28px;
+    width: 84px;
+}
+#divTopRowImageFHNW {
+    background-image: url("../images/nw.png");
+    background-repeat: no-repeat;
+    height: 49px;
+    position: absolute;
+    right: 116px;
+    top: 35px;
+    width: 90px;
+}
+#divTopRowImageLeft {
+    background-image: url("../images/logo.png");
+    background-repeat: no-repeat;
+    height: 106px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 238px;
+}
+#divMenuLeft {
+    background-color: #FFFFFF;
+    bottom: 34px;
+    left: 0;
+    margin: 125px 0 0;
+    overflow: auto;
+    position: absolute;
+    top: 0;
+    visibility: hidden;
+    width: 250px;
+}
+#divMenuSearch {
+    background-color: #FFFFFF;
+    height: 23px;
+    left: 0;
+    margin: 18px 0 25px 23px;
+    top: 125px;
+}
+#divMenuBoundaries {
+    background-color: #FFFFFF;
+    font-family: sans-serif;
+    font-size: 12px;
+    height: 23px;
+    left: 0;
+    margin: 17px;
+    top: 0;
+}
+#divMenuInfos {
+    background-color: #FFFFFF;
+    height: 95px;
+    left: 0;
+    top: 0;
+}
+#divMenuParticipants {
+    background-color: #FFFFFF;
+    height: 130px;
+    left: 0;
+    top: 0;
+}
+#divMenuParticipants {
+    background-color: #FFFFFF;
+    height: 130px;
+    left: 0;
+    top: 0;
+}
+#divCopyright {
+    background-color: #FFFFFF;
+    border-top: medium solid;
+    bottom: -1px;
+    font-family: sans-serif;
+    font-size: 12px;
+    height: 36px;
+    left: 0;
+    padding-left: 20px;
+    position: absolute;
+    width: 250px;
+}
+#divCanvas {
+    background-color: #000000;
+    height: 100%;
+    left: 250px;
+    position: absolute;
+    top: 125px;
+    width: 100%;
+}
+.classMenu {
+    left: 0;
+}
+ul.classMenu {
+    background-color: white;
+    margin: 0;
+}
+.classMenu li {
+    font-family: sans-serif;
+    font-size: 12px;
+    list-style: none outside none;
+    margin-left: -6px;
+    padding: 3px 19px 2px;
+}
+.classMenu a:hover, li:hover {
+    background-color: red;
+    color: white;
+    cursor: pointer;
+}
+.classSeparatorTitle {
+    background-color: #000000;
+    color: #FFFFFF;
+    font-family: sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 3px;
+    text-align: center;
+}
+.classMenu a {
+    color: #000000;
+    font-family: sans-serif;
+    font-style: normal;
+    text-decoration: none;
+}
+#divSearchResults {
+    background-color: #000000;
+    padding-right: 12px;
+    position: absolute;
+    visibility: hidden;
+    z-index: 100;
+}
+#divResultBar {
+    background-color: #FFFFFF;
+    font-family: sans-serif;
+    font-size: 12px;
+    padding: 2px 0 2px 12px;
+    width: 100%;
+}
+#divResultBar:hover {
+    background-color: #FF0000;
+    color: #FFFFFF;
+}
+#divSearchResultTitle {
+    background-color: #000000;
+    color: #FFFFFF;
+    font-family: sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 3px;
+    text-align: center;
+    visibility: hidden;
+}
+#divNavigationManual {
+    background-image: url("../images/navigation.png");
+    background-repeat: no-repeat;
+    height: 250px;
+    left: 10%;
+    position: absolute;
+    top: 10%;
+    visibility: hidden;
+    width: 525px;
+    z-index: 100;
+}
+#btgo {
+    height: 26px;
+    text-align: center;
+    width: 35px;
+}

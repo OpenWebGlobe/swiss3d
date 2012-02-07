@@ -5,7 +5,9 @@
 <meta http-equiv="X-UA-Compatible" content="chrome=1"/>
 <title>Switzerland 3D Demo Viewer</title>
 
-<link rel="stylesheet" type="text/css" href="styles/styles.css">
+<link media="only screen and (min-width: 1178px)" rel="stylesheet" type="text/css" href="styles/styles.css">
+<link media="only screen and (max-width: 1179px)" rel="stylesheet" href="styles/css_medium.css" type="text/css" />
+<link media="only screen and (max-width: 880px)" rel="stylesheet" href="styles/css_small.css" type="text/css" />
 <script type="text/javascript"
         src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
 <script type="text/javascript" src="externals/openwebglobe-0.9.0.js"></script>
@@ -331,7 +333,7 @@ function checkUrlParameters()
 
 <div id="divTopRow">
    <div id="divTopRowImageRight"></div>
-   <div id="divTitle">OpenWebGlobe DemoViewer Switzerland 3D</div>
+   <div id="divTitle">OpenWebGlobe&nbsp;DemoViewer&nbsp;Switzerland 3D</div>
    <a href="http://www.fhnw.ch/habg/ivgi" target="_blank"><div id="divTopRowImageFHNW"></div></a>
    <a href="http://www.camptocamp.com" target="_blank"><div id="divTopRowImageCamptocamp"></div></a>
    <div id="divTopRowImageLeft"></div>
