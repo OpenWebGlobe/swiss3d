@@ -37,7 +37,7 @@
     position: absolute;
     right: 0;
     top: 50px;
-    width: 428px;
+    width: 460px;
 }
 #divTopRowImageCamptocamp {
     background-image: url("../images/logo-camptocamp.png");
@@ -68,7 +68,7 @@
 }
 #divMenuLeft {
     background-color: #FFFFFF;
-    bottom: 34px;
+    bottom: 38px;
     left: 0;
     margin: 125px 0 0;
     overflow: auto;
@@ -99,18 +99,20 @@
     left: 0;
     top: 0;
 }
-#divMenuParticipants {
+#divMenu3DModels {
     background-color: #FFFFFF;
-    height: 130px;
+    height: 131px;
     left: 0;
     top: 0;
 }
+
 #divMenuParticipants {
-    background-color: #FFFFFF;
-    height: 130px;
+    background-color: #ffffff;
+    height: 70px;
     left: 0;
     top: 0;
 }
+
 #divCopyright {
     background-color: #FFFFFF;
     border-top: medium solid;
@@ -159,6 +161,16 @@ ul.classMenu {
     padding: 3px;
     text-align: center;
 }
+  .classSeparatorTitleWhite
+  {
+   background-color: #ffffff;
+    color: #000000;
+    font-family: sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 3px;
+    text-align: left;
+  }
 .classMenu a {
     color: #000000;
     font-family: sans-serif;
