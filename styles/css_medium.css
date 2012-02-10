@@ -112,25 +112,28 @@
     top: 0;
 }
 #divCopyright {
-    background-color: #FFFFFF;
-    border-top: medium solid;
-    bottom: -1px;
-    font-family: sans-serif;
-    font-size: 12px;
-    height: 36px;
-    left: 0;
-    padding-left: 20px;
-    position: absolute;
-    width: 250px;
+   background-color: #FFFFFF;
+   bottom: 0px;
+   font-family: sans-serif;
+   font-size: 12px;
+   height: 36px;
+   left: 0px;
+   padding-left: 20px;
+   position: absolute;
+   width: 250px;
+   border-top: solid;
 }
-#divCanvas {
-    background-color: #000000;
-    height: 100%;
-    left: 250px;
-    position: absolute;
-    top: 125px;
-    width: 100%;
+
+#divCanvas
+{
+   background-color : #000000;
+   position : fixed;
+   left : 250px;
+   top : 125px;
+   margin: 0px;
+   overflow: hidden;
 }
+
 .classMenu {
     left: 0;
 }
