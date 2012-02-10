@@ -145,6 +145,16 @@
     font-size : 12px;
 }
 
+#divMenuQuality {
+   background-color: #ffffff;
+   height: 29px;
+   left: 0;
+   margin: 17px;
+   top: 0;
+   font-family :  sans-serif;
+   font-size : 12px;
+}
+
 #divMenuInfos {
     background-color: #FFFFFF;
     height: 75px;

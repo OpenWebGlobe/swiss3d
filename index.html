@@ -302,6 +302,15 @@ function toggleboundaries(sender)
 }
 
 
+/**
+ * @description set render quality
+ * @param {number} q Quality
+ */
+function setQuality(q)
+{
+   ogSetRenderQuality(world, q);
+}
+
 function checkUrlParameters()
 {
    var pos = {};
@@ -351,6 +360,13 @@ function checkUrlParameters()
    <div class="classSeparatorTitle">Boundaries</div>
    <div id="divMenuBoundaries">
       <input type="checkbox" onclick="toggleboundaries(this)"> Boundaries
+   </div>
+   <div class="classSeparatorTitle">Quality</div>
+   <div id="divMenuQuality">
+      <input type="radio" name="quality" value="High" onClick="setQuality(3)">High &nbsp;
+      <input type="radio" name="quality" value="Medium" onClick="setQuality(2)">Medium &nbsp;
+      <input type="radio" name="quality" value="Low" onClick="setQuality(1)" checked>Low &nbsp;
+      <p style="font-size: 9px;">Higher quality reduces speed (recommended for fast computers only)</p>
    </div>
    <div class="classSeparatorTitle">3D Models</div>
    <div id="divMenu3DModels">
