@@ -351,11 +351,9 @@ function checkUrlParameters()
 <div id="divMenuLeft">
    <div class="classSeparatorTitle">Localisation Search</div>
    <div id="divMenuSearch">
-
       <input id="txtInput" type="text" size="20"
              onkeydown="searchBoxKeyPressed(event)">
-      <input id="btgo" type="button" value="Go" onclick="search()">
-
+      <input id="btgo" type="button" value="Go" onclick="search()"><br/>(Places in Switzerland only)
    </div>
    <div class="classSeparatorTitle">Boundaries</div>
    <div id="divMenuBoundaries">
@@ -363,10 +361,10 @@ function checkUrlParameters()
    </div>
    <div class="classSeparatorTitle">Quality</div>
    <div id="divMenuQuality">
-      <input type="radio" name="quality" value="High" onClick="setQuality(3)">High &nbsp;
-      <input type="radio" name="quality" value="Medium" onClick="setQuality(2)">Medium &nbsp;
+      <input type="radio" name="quality" value="High" onClick="setQuality(2)">High &nbsp;
+      <input type="radio" name="quality" value="Medium" onClick="setQuality(1.5)">Medium &nbsp;
       <input type="radio" name="quality" value="Low" onClick="setQuality(1)" checked>Low &nbsp;
-      <p style="font-size: 9px;">Higher quality reduces speed (recommended for fast computers only)</p>
+      <p style="font-size: 9px;">(higher quality requires a fast computer and good internet connection)</p>
    </div>
    <div class="classSeparatorTitle">3D Models</div>
    <div id="divMenu3DModels">

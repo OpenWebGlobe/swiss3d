@@ -134,10 +134,12 @@
     left: 0;
     top: 125px;
     margin:18px 0px 25px 23px;
+    font-family :  sans-serif;
+    font-size : 12px;
 }
 #divMenuBoundaries {
     background-color: #ffffff;
-    height: 23px;
+    height: 5px;
     left: 0;
     margin: 17px;
     top: 0;
