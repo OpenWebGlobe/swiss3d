@@ -302,7 +302,7 @@
 }
 
 
-#divNavigationManual
+#divIEInfo
 {
    width : 525px;
    height : 250px;
@@ -313,6 +313,21 @@
    position : absolute;
    background-repeat : no-repeat;
    visibility : hidden;
+}
+
+#divPosition
+{
+    height: 21px;
+    position: absolute;
+    right: 0;
+    text-align: right;
+    top: 104px;
+    width: 100%;
+    font-family: arial;
+    font-size: 14px;
+    padding-right: 9px;
+    padding-top: 3px;
+    color: #ffffff;
 }
 
 #btgo

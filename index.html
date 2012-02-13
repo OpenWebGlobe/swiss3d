@@ -63,7 +63,7 @@ function main()
          mode:"overlay",
          destination:"http://swiss3d.openwebglobe.org/"
       });
-      var info = document.getElementById("divNavigationManual");
+      var info = document.getElementById("divIEInfo");
       info.style.visibility = 'visible';
       info.style.background = "";
       info.style.color = "#ffffff";
@@ -84,12 +84,19 @@ function main()
       globe = ogCreateGlobe(g_context);
 
       //load swissimage data
+	  /*
       var imgSWISSTOPO =
       {
          url:["/data/image"],
          layer:"ch.swisstopo.swissimage-20111129",
          service:"owg"
-      };
+      };*/
+	   var imgSWISSTOPO = 
+   	 {
+      	url     : ["http://10.42.2.37/"],
+      	layer   : "swissimage", 
+      	service : "owg"
+   	 };
       ogAddImageLayer(globe, imgSWISSTOPO);
 
       //load Elevation data dhm25
@@ -99,7 +106,7 @@ function main()
          layer:"DHM25-20111026",
          service:"owg"
       }
-      ogAddElevationLayer(globe, elvDHM);
+      //ogAddElevationLayer(globe, elvDHM);
 
       ogSetBackgroundColor(g_context, 0.2, 0.2, 0.7, 1);
 
@@ -112,12 +119,12 @@ function main()
 
       ogSetCanvasSizeOffset(scene, 250, 129);
 
-      document.body.onclick = function ()
+      /*document.body.onclick = function ()
       {
-         document.getElementById("divNavigationManual").style.visibility = 'hidden';
+         document.getElementById("divIEInfo").style.visibility = 'hidden';
          document.body.onclick = null;
       }
-
+		*/
       // Load Demo Buildings
       geometrylayer = ogCreateGeometryLayer(world, "buildings");
       ogLoadGeometryAsync(geometrylayer, "models/bulle.json");
@@ -187,7 +194,28 @@ function main()
 
       //set flyto speed
       ogSetFlightDuration(scene, 6000);
+	  ogSetMouseMoveFunction(g_context,showPosition);
    }
+}
+
+function showPosition()
+{
+	var divpos = document.getElementById('divPosition');
+	var pos = ogGetPosition(scene);
+	var ori = ogGetOrientation(scene);
+	var link = "http://swiss3d.openwebglobe.org?lng="+pos.longitude+"&lat="+pos.latitude+"&elv="+pos.elevation;
+	
+	if(ori.yaw != 0 && ori.yaw!=null)
+		link = link+"&ori="+ori.yaw;
+		
+	if(ori.pitch != 0 && ori.pitch!=null)
+		link = link+"&pitch="+ori.pitch;
+		
+	if(ori.roll != 0 && ori.roll!=null)
+		link = link+"&roll="+ori.roll;
+	 
+	 
+	divpos.innerHTML = link;
 }
 
 function searchBoxKeyPressed(evt)
@@ -412,8 +440,9 @@ function checkUrlParameters()
 <div id="divCopyright">
    Data &#169; swisstopo<br/>NASA's Earth Observatory
 </div>
-
+<div id="divPosition"></div>
 <div id="divCanvas">
+	<div id="divIEInfo"></div>
    <div id="divSearchResults">
       <div id="divSearchResultTitle">Search Results</div>
    </div>
