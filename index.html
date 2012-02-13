@@ -331,7 +331,17 @@ function checkUrlParameters()
       }
       if (pos.lng != null && pos.lat != null && pos.elv != null)
       {
-         ogFlyTo(scene, pos.lng, pos.lat, pos.elv, pos.yaw, pos.pitch, pos.roll);
+         var camera = ogGetActiveCamera(scene);
+         ogSetPosition(camera, pos.lng, pos.lat, pos.elv);
+
+         if (pos.yaw != null || pos.pitch != null || pos.roll != null)
+         {
+            if (pos.yaw == null) pos.yaw = 0;
+            if (pos.pitch == null) pos.pitch = 0;
+            if (pos.roll == null) pos.roll = 0;
+
+            ogSetOrientation(camera, pos.yaw, pos.pitch, pos.roll);
+         }
       }
    }
 }
