@@ -84,19 +84,12 @@ function main()
       globe = ogCreateGlobe(g_context);
 
       //load swissimage data
-	  /*
       var imgSWISSTOPO =
       {
          url:["/data/image"],
          layer:"ch.swisstopo.swissimage-20111129",
          service:"owg"
-      };*/
-	   var imgSWISSTOPO = 
-   	 {
-      	url     : ["http://10.42.2.37/"],
-      	layer   : "swissimage", 
-      	service : "owg"
-   	 };
+      };
       ogAddImageLayer(globe, imgSWISSTOPO);
 
       //load Elevation data dhm25
@@ -194,9 +187,39 @@ function main()
 
       //set flyto speed
       ogSetFlightDuration(scene, 6000);
-	  ogSetMouseMoveFunction(g_context,showPosition);
+	  
+	  ogSetKeyDownFunction(g_context,OnKey);//
+	  
    }
 }
+
+var posOn = false;
+function OnKey(a,key)
+{
+	if(key==80)
+	{
+	
+		if(posOn)
+		{
+		
+			ogSetMouseMoveFunction(g_context,null);
+			posOn=false;
+			var divpos = document.getElementById('divPosition');
+			divpos.innerHTML="";
+		}
+		else
+		{
+			
+			ogSetMouseMoveFunction(g_context,showPosition);
+			posOn=true;
+			showPosition();
+		}
+		
+	}
+	
+}
+
+
 
 function showPosition()
 {
@@ -206,7 +229,7 @@ function showPosition()
 	var link = "http://swiss3d.openwebglobe.org?lng="+pos.longitude+"&lat="+pos.latitude+"&elv="+pos.elevation;
 	
 	if(ori.yaw != 0 && ori.yaw!=null)
-		link = link+"&ori="+ori.yaw;
+		link = link+"&yaw="+ori.yaw;
 		
 	if(ori.pitch != 0 && ori.pitch!=null)
 		link = link+"&pitch="+ori.pitch;
@@ -355,7 +378,7 @@ function checkUrlParameters()
       for (var i = 0; i < x.length; i++)
       {
          var y = x[i].split("=");
-         pos[y[0]] = y[1];
+         pos[y[0]] = parseFloat(y[1]);
       }
       if (pos.lng != null && pos.lat != null && pos.elv != null)
       {
